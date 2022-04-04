@@ -132,7 +132,7 @@ class PaynetViewCubit extends StatelessWidget {
           SizedBox(height: 250.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: ElevatedButtonCom(title: "Oldinga", navigator: "/"),
+            child: ElevatedButtonCom("Oldinga", "/"),
           ),
         ],
       ),

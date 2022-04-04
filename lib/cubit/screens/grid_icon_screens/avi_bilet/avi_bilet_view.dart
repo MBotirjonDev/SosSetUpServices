@@ -92,6 +92,48 @@ class AviTicketViewCubit extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 20.h),
+            // ! bir yana qara qisqaradi
+             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      "Vaqti",
+                      style: TextStyle(
+                        color: whiteColor,
+                        fontSize: 25.sp,
+                      ),
+                    ),
+                    Container(
+                      color: whiteColor,
+                      width: 200.w,
+                      height: 2.h,
+                    ),
+                  ],
+                ),
+                SizedBox(width: 20.w),
+                Column(
+                  children: [
+                    Text(
+                      "Vaqti",
+                      style: TextStyle(
+                        color: whiteColor,
+                        fontSize: 25.sp,
+                      ),
+                    ),
+                    Container(
+                      color: whiteColor,
+                      width: 200.w,
+                      height: 2.h,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          
           ],
         ),
       ),

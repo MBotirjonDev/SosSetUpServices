@@ -29,7 +29,7 @@ class ForgotPasswordViewCubit extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.r)),
                     elevation: 7.h,
-                    child: const TextForgotAuth(),
+                    child:  TextForgotAuth(),
                   ),
                 ],
               ),
@@ -39,8 +39,8 @@ class ForgotPasswordViewCubit extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(20.h),
             child: ElevatedButtonCom(
-              title: "Kirish",
-              navigator: "/bottom",
+               "Kirish",
+               "/bottom",
             ),
           ),
           Row(

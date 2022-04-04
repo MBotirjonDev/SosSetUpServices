@@ -6,8 +6,7 @@ import 'package:sossetupservice/core/constants/colors.dart';
 class ElevatedButtonCom extends StatelessWidget {
   String title;
   String navigator;
-  ElevatedButtonCom({Key? key, required this.title, required this.navigator})
-      : super(key: key);
+  ElevatedButtonCom( this.title, this.navigator);
 
   @override
   Widget build(BuildContext context) {

@@ -242,7 +242,9 @@ class _TrasferMoneyViewCubitState extends State<TrasferMoneyViewCubit>
                           padding: EdgeInsets.only(
                               left: 5.w, right: 5.w, top: 20.h, bottom: 120.h),
                           child: ElevatedButtonCom(
-                              title: "To'lash", navigator: "/"),
+                            "To'lash",
+                            "/",
+                          ),
                         ),
                       ],
                     ),
@@ -289,7 +291,7 @@ class _TrasferMoneyViewCubitState extends State<TrasferMoneyViewCubit>
                                     ),
                                   ),
                                   ExpansionTile(
-                                    leading:  Icon(
+                                    leading: Icon(
                                       Icons.call,
                                       size: 40.h,
                                       color: greenColor,

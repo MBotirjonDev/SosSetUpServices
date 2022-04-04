@@ -7,7 +7,8 @@ abstract class HttpRepositoryGet {
 }
 
 class HttpSampleRepositoryGet implements HttpRepositoryGet {
-  final baseUrl = Uri.parse("https://jsonplaceholder.typicode.com/users");
+  final baseUrl = Uri.parse(
+      "http://185.196.214.192:8097/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/auth-controller/singUp");
   @override
   Future<List<AuthModel>> getHttpFromApi() async {
     final response = await http.get(baseUrl);
@@ -19,9 +20,8 @@ class HttpSampleRepositoryGet implements HttpRepositoryGet {
   Future<List<AuthModel>> postDataReg() async {
     final response = await http.post(
       baseUrl,
-      body: {},
+      body: {""},
       headers: {},
-
     );
     return (jsonDecode(response.body) as List)
         .map((e) => AuthModel.fromJson(e))

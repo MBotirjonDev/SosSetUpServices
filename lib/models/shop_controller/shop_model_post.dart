@@ -4,12 +4,12 @@
 
 import 'dart:convert';
 
-Shop shopFromJson(String str) => Shop.fromJson(json.decode(str));
+ShopModel shopFromJson(String str) => ShopModel.fromJson(json.decode(str));
 
-String shopToJson(Shop data) => json.encode(data.toJson());
+String shopToJson(ShopModel data) => json.encode(data.toJson());
 
-class Shop {
-    Shop({
+class ShopModel {
+    ShopModel({
         this.id,
         this.title,
         this.shopType,
@@ -27,7 +27,7 @@ class Shop {
     String? about;
     String? caption;
 
-    factory Shop.fromJson(Map<String, dynamic> json) => Shop(
+    factory ShopModel.fromJson(Map<String, dynamic> json) => ShopModel(
         id: json["id"],
         title: json["title"],
         shopType: json["shopType"],

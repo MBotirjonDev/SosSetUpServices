@@ -33,7 +33,7 @@ class RouteManager {
         );
       case "/auth":
         return MaterialPageRoute(
-          builder: (context) => const AuthViewCubit(),
+          builder: (context) =>  AuthViewCubit(),
         );
       case "/forgot":
         return MaterialPageRoute(

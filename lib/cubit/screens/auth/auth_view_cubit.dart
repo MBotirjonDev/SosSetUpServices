@@ -1,15 +1,26 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sossetupservice/core/components/auth_reg_pass_text_form.dart';
-import 'package:sossetupservice/core/components/elevated_button_auth.dart';
 import 'package:sossetupservice/core/components/forgot_reg_auth_text_button.dart';
 import 'package:sossetupservice/core/components/text_auth_forgot_reg.dart';
-import 'package:sossetupservice/core/components/text_phone_auth_forgor.dart';
 import 'package:sossetupservice/core/components/title_all_auth_pages.dart';
 import 'package:sossetupservice/core/constants/colors.dart';
 
-class AuthViewCubit extends StatelessWidget {
-  const AuthViewCubit({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class AuthViewCubit extends StatefulWidget {
+  AuthViewCubit({Key? key}) : super(key: key);
+
+  @override
+  State<AuthViewCubit> createState() => _AuthViewCubitState();
+}
+
+class _AuthViewCubitState extends State<AuthViewCubit> {
+  bool eye = true;
+  TextEditingController phoneController = TextEditingController();
+
+  TextEditingController passwordController = TextEditingController();
+
+  var formKey = GlobalKey<FormFieldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +33,7 @@ class AuthViewCubit extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.h),
             child: Form(
+              key: formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -30,7 +42,45 @@ class AuthViewCubit extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.r)),
                     elevation: 7.h,
-                    child: const TextForgotAuth(),
+                    child: TextFormField(
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Can\'t be empty';
+                        }
+                        if (text.length < 4) {
+                          return 'Too short';
+                        }
+                        return null;
+                      },
+                      showCursor: true,
+                      cursorColor: cursorColor,
+                      keyboardType: TextInputType.phone,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.r),
+                        ),
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.only(left: 14.w),
+                          child: SizedBox(
+                            width: 75.w,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  Icons.call,
+                                  size: 34.h,
+                                  color: mainColor,
+                                ),
+                                Icon(
+                                  Icons.add,
+                                  color: blackColor,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 25.h),
                   Material(
@@ -38,7 +88,53 @@ class AuthViewCubit extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.r)),
                     elevation: 5.h,
-                    child: const AuthRegPassTextForm(),
+                    child: TextFormField(
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Can\'t be empty';
+                        }
+                        if (text.length < 4) {
+                          return 'Too short';
+                        }
+                        return null;
+                      },
+                      obscureText: eye,
+                      cursorColor: cursorColor,
+                      showCursor: true,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        hintText: "Parol",
+                        hintStyle: TextStyle(fontSize: 19.sp),
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.only(left: 14.w),
+                          child: Icon(
+                            Icons.lock,
+                            size: 38.h,
+                            color: mainColor,
+                          ),
+                        ),
+                        suffixIconColor: greyColor,
+                        suffixIcon: IconButton(
+                          icon: eye
+                              ? Icon(
+                                  Icons.remove_red_eye,
+                                  size: 30.h,
+                                )
+                              : Icon(
+                                  CupertinoIcons.eye_slash_fill,
+                                  size: 30.h,
+                                ),
+                          onPressed: () {
+                            setState(() {
+                              eye = !eye;
+                            });
+                          },
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.r),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -64,9 +160,28 @@ class AuthViewCubit extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.all(20.h),
-            child: ElevatedButtonCom(
-              title: "Kirish",
-              navigator: "/bottom",
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  minimumSize: Size(450.w, 60.h),
+                  primary: mainColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.r))),
+              child: Text(
+                "Kirish",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 27.sp,
+                ),
+              ),
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Processing Data')),
+                  );
+                } else {
+                  Navigator.pushNamed(context, "/bottom");
+                }
+              },
             ),
           ),
           Row(

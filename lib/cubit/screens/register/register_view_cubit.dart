@@ -103,14 +103,14 @@ class RegisterViewCubit extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.r)),
                     elevation: 5.h,
-                    child: const AuthRegPassTextForm(),
+                    child: AuthRegPassTextForm(),
                   ),
                   SizedBox(height: 15.h),
                   Padding(
                     padding: EdgeInsets.all(2.h),
                     child: ElevatedButtonCom(
-                      title: "Kirish",
-                      navigator: "/bottom",
+                      "Kirish",
+                      "/bottom",
                     ),
                   ),
                   SizedBox(height: 20.h),
